@@ -102,6 +102,7 @@ def extract_media_info_sync(url: str) -> Dict[str, Any]:
         "quiet": True,
         "no_warnings": True,
         "noplaylist": True,
+        "js_runtimes": {"node": {}},
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         return ydl.extract_info(url, download=False)
@@ -118,6 +119,7 @@ def download_media_sync(url: str, format_id: str, output_base: str) -> str:
             "outtmpl": f"{output_base}.%(ext)s",
             "noplaylist": True,
             "quiet": True,
+            "js_runtimes": {"node": {}},
             "postprocessors": [
                 {
                     "key": "FFmpegExtractAudio",
